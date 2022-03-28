@@ -1,7 +1,9 @@
 // Import and require mysql2 & Inquirer
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
+
 const table = require('console.table');
+var figlet = require('figlet');
 
 const PORT = process.env.PORT || 3001;
 
@@ -16,26 +18,16 @@ const db = mysql.createConnection({
     database: 'employees_db',
 });
 
+// // Title 
+// figlet('EMPLOYEE DATABASE', (err, data) => {
+//     console.log(err || data)
+// });
+
 db.connect(function(err) {
     if (err) {
         return console.error('error: ' + err.message);
     }
-
     console.log('Connected to the Employee Database.');
-});
-
-
-
-// Title 
-var figlet = require('figlet');
-
-figlet('EMPLOYEE DATABASE', function(err, data) {
-    if (err) {
-        console.log('Something went wrong...');
-        console.dir(err);
-        return;
-    }
-    console.log(data)
 });
 
 // THEN I am presented with the following options: view all departments, view all roles, view all employees, 
@@ -48,7 +40,7 @@ function userInput() {
             name: 'task',
             message: 'Would you like to do?',
             choices: [
-                'View all departments ',
+                'View all departments',
                 'View all roles',
                 'View all employees',
                 'Add a department',
@@ -59,57 +51,83 @@ function userInput() {
             ]
         })
         .then(function(answer) {
-            if (answer.choices === 'View all departments') {
+            if (answer.task === 'View all departments') {
                 viewDepartments();
-            } else if (answer.choices === 'View all roles') {
+            } else if (answer.task === 'View all roles') {
                 viewRoles();
-            } else if (answer.choices === 'View all employees') {
+            } else if (answer.task === 'View all employees') {
                 viewEmployees();
-            } else if (answer.choices === 'Add a department') {
+            } else if (answer.task === 'Add a department') {
                 addDepartment();
-            } else if (answer.choices === 'Add a role') {
+            } else if (answer.task === 'Add a role') {
                 addRole();
-            } else if (answer.choices === 'Add an employee') {
+            } else if (answer.task === 'Add an employee') {
                 addEmployee();
-            } else if (answer.choices === 'Update an employee role') {
+            } else if (answer.task === 'Update an employee role') {
                 updateEmployeeRole();
-            } else if (answer.choices === 'End') {
-                updateEmployeeRole();
+            } else if (answer.task === 'End') {
+                db.end();
             }
         })
 }
 
-
+// WHEN I choose to view all departments
+// THEN I am presented with a formatted table showing department names and department ids
 function viewDepartments() {
-    console.log('Viewing departments');
+    db.query('SELECT department.id AS id, department.name AS deparment FROM department', (err, res) => {
+        if (err) throw err;
+        console.log('Viewing departments\n');
+        console.table(res);
+        userInput();
+    })
+};
 
-}
-
+// WHEN I choose to view all roles
+// THEN I am presented with the job title, role id, the department that role belongs to, and the salary for that role
 function viewRoles() {
-    console.log('Viewing roles');
+    db.query('SELECT roles.id, roles.title, department.name AS department FROM roles INNER JOIN department ON roles.department_id = department.id', (err, res) => {
+        if (err) throw err;
+        console.log('Viewing roles\n');
+        console.table(res);
+        userInput();
 
-}
+    })
+};
 
+// WHEN I choose to view all employees
+// THEN I am presented with a formatted table showing employee data, including employee ids, 
+// first names, last names, job titles, departments, salaries, and managers that the employees report to
 function viewEmployees() {
-    console.log('Viewing all employees');
+    console.log('Viewing all employees\n');
 
 }
 
+
+// WHEN I choose to add a department
+// THEN I am prompted to enter the name of the department and that department is added to the database
 function addDepartment() {
-    console.log('Adding a department');
+    console.log('Adding a department\n');
 
 }
 
+
+// WHEN I choose to add a role
+// THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
 function addRole() {
-    console.log('Adding a role');
+    console.log('Adding a role\n');
 
 }
 
+// WHEN I choose to add an employee
+// THEN I am prompted to enter the employee’s first name, last name, 
+// role, and manager, and that employee is added to the database
 function addEmployee() {
     console.log('Adding an employee');
 
 }
 
+// WHEN I choose to update an employee role
+// THEN I am prompted to select an employee to update and their new role and this information is updated in the database
 function updateEmployeeRole() {
     console.log('Updating an employee role');
 

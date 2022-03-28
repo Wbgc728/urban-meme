@@ -1,3 +1,4 @@
+USE employees_db;
 INSERT INTO department (name)
 -- Dept #1
 VALUES ('Sales'); 
@@ -13,35 +14,35 @@ VALUES ('Legal');
 
 
 -- 1)
-INSERT INTO role (title, salary, department_id)
+INSERT INTO roles (title, salary, department_id)
 VALUES ('Sales Lead', 100000, 1);
 -- 2)
-INSERT INTO role (title, salary, department_id)
+INSERT INTO roles (title, salary, department_id)
 VALUES ('Salesperson', 80000, 1);
 -- 3)
-INSERT INTO role (title, salary, department_id)
+INSERT INTO roles (title, salary, department_id)
 VALUES ('Lead Engineer', 155000, 2);
 -- 4)
-INSERT INTO role (title, salary, department_id)
+INSERT INTO roles (title, salary, department_id)
 VALUES ('Software Engineer', 120000, 2);
 -- 5)
-INSERT INTO role (title, salary, department_id)
+INSERT INTO roles (title, salary, department_id)
 VALUES ('Account Manager', 160000, 3);
 -- 6)
-INSERT INTO role (title, salary, department_id)
+INSERT INTO roles (title, salary, department_id)
 VALUES ('Accountant', 125000, 3);
 -- 7)
-INSERT INTO role (title, salary, department_id)
+INSERT INTO roles (title, salary, department_id)
 VALUES ('Legal Team Lead', 250000, 4);
 -- 8)
-INSERT INTO role (title, salary, department_id)
+INSERT INTO roles (title, salary, department_id)
 VALUES ('Lawyer', 190000, 4);
 
 
 
 -- 1)
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES ('John', 'Doe', 1, null;
+VALUES ('John', 'Doe', 1, null);
 
 -- 2)
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
