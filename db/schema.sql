@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS employees_db;
 CREATE DATABASE employees_db;
 
-use employees_db;
+USE employees_db;
 
 CREATE TABLE department (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY
@@ -27,19 +27,4 @@ CREATE TABLE employee (
     REFERENCES role(id)
 );
 
-
-
-id 
-
-first_name
-
-last_name
-
-title
-
-department
-
-salary 
-
-manager
 

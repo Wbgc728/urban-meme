@@ -1,0 +1,27 @@
+{
+    "name": "urban-meme",
+    "version": "1.0.0",
+    "description": "Employee Management System",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Wbgc728/urban-meme.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Wbgc728/urban-meme/issues"
+    },
+    "homepage": "https://github.com/Wbgc728/urban-meme#readme",
+    "dependencies": {
+        "console.table": "^0.10.0",
+        "figlet": "^1.5.2",
+        "inquirer": "^8.2.2",
+        "mysql2": "^2.3.3"
+    }
+}
