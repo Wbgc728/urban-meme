@@ -13,7 +13,6 @@ The neccessary dependencies can be installed by running
 
 ```
 npm i
-
 ```
 
 ##USAGE
@@ -22,7 +21,6 @@ The application can be started with
 
 ```
 npm start
-
 ```
 From there a command-line application that accepts user input to:
 - view all departments (presented with a formatted table showing department names and department ids)
@@ -36,8 +34,6 @@ From there a command-line application that accepts user input to:
 More detail is shown in the example video:
 
 https://drive.google.com/file/d/19T40RsJpYzr1qlq4V49k1XYUjhanovqd/view
-
-
 
 ## LINKS
 
