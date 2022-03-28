@@ -205,10 +205,10 @@ function addEmployee() {
             }
         ])
         .then(answer => {
-            const params = [answer.fistName, answer.lastName]
+            const params = [answer.firstName, answer.lastName]
 
             // Get the current list of roles
-            db.promise().query('SELECT roles.id, role.title FROM role', (err, data) => {
+            db.query('SELECT roles.id, roles.title FROM roles', (err, data) => {
                 if (err) throw err;
 
                 const roles = data.map(({ id, title }) => ({ name: title, value: id }));
@@ -225,12 +225,10 @@ function addEmployee() {
 
                         const managerSql = 'SELECT * FROM employee';
 
-                        connection.promise().query(managerSql, (err, data) => {
+                        db.query(managerSql, (err, data) => {
                             if (err) throw err;
 
                             const managers = data.map(({ id, first_name, last_name }) => ({ name: first_name + " " + last_name, value: id }));
-
-                            // console.log(managers);
 
                             inquirer.prompt([{
                                     type: 'list',
@@ -242,11 +240,11 @@ function addEmployee() {
                                     const manager = managerChoice.manager;
                                     params.push(manager);
 
-                                    connection.query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)', params, (err, result) => {
+                                    db.query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)', params, (err, result) => {
                                         if (err) throw err;
                                         console.log('Employee added')
 
-                                        showEmployees();
+                                        viewEmployees();
                                     });
                                 });
                         });
